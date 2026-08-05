@@ -1,15 +1,16 @@
 from brain.brain import think
+from rich.console import Console
 
-print("=" * 40)
-print("         JARVIS")
-print("=" * 40)
+console = Console()
+
+console.print("[bold cyan]====================================[/bold cyan]")
+console.print("[bold green]         JARVIS AI[/bold green]")
+console.print("[bold cyan]====================================[/bold cyan]")
 
 while True:
-
     command = input("You: ")
 
     if command.lower() == "exit":
-        print("Goodbye!")
         break
 
     think(command)
