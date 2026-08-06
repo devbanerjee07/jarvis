@@ -1,0 +1,7 @@
+CHAT_MODEL = "qwen3:8b"
+
+INTENT_MODEL = "qwen2.5:3b"
+
+TEMPERATURE = 0.7
+
+MAX_HISTORY = 20

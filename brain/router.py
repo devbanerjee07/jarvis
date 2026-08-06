@@ -1,27 +1,16 @@
-from actions.actions import execute
+from skills.manager import execute_skill
 from ai.chat import ask_ai
 
+
 def route(intent, user_input):
-    intent_name = intent.get("intent")
 
-    print("Router Intent:", intent_name)
+    print("Router Intent:", intent.get("intent"))
 
-    if intent_name == "open_app":
-        execute(intent.get("app", ""))
+    if execute_skill(intent):
+        return
 
-    elif intent_name == "open_website":
-        execute(intent.get("website", ""))
-
-    elif intent_name == "search_google":
-        query = intent.get("query", "")
-        execute(f"search google for {query}")
-
-    elif intent_name == "search_youtube":
-        query = intent.get("query", "")
-        execute(f"search youtube for {query}")
-
-    elif intent_name == "conversation":
+    if intent.get("intent") == "conversation":
         print("\nJarvis:", ask_ai(user_input))
+        return
 
-    else:
-        print("Sorry Sir, I don't understand that yet.")
+    print("Sorry Sir, I don't understand that yet.")

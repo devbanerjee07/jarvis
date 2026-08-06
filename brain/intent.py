@@ -1,5 +1,5 @@
 import json
-from ollama import chat
+from ai.manager import intent_ai
 
 SYSTEM_PROMPT = """
 You are the decision engine for JARVIS.
@@ -42,19 +42,16 @@ User: Who discovered gravity?
 """
 
 def detect_intent(user_input):
-    response = chat(
-        model="qwen2.5:3b",
-        messages=[
-            {
-                "role": "system",
-                "content": SYSTEM_PROMPT
-            },
-            {
-                "role": "user",
-                "content": user_input
-            }
-        ]
-    )
+    response = intent_ai([
+        {
+            "role": "system",
+            "content": SYSTEM_PROMPT,
+        },
+        {
+            "role": "user",
+            "content": user_input,
+        },
+    ])
 
     content = response["message"]["content"].strip()
 
